@@ -1,4 +1,4 @@
-﻿{
+{
   "name": "com.ylunha.ars-unity-extension",
   "version": "1.0.0",
   "displayName": "Ars Unity Extensions",
@@ -12,5 +12,14 @@
     "name": "Yurii Lunha",
     "email": "iurylunga@gmail.com",
     "url": "https://github.com/YLUNHA"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/YLUNHA/ars_unity_extensions.git"
+  },
+  "bugs": {
+    "url": "https://github.com/YLUNHA/ars_unity_extensions/issues",
+    "email": "iurylunga@gmail.com"
+  },
+  "homepage": "https://github.com/YLUNHA"
 }
