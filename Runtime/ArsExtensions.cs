@@ -287,7 +287,7 @@ namespace ars_unity_extensions.Runtime
 
             if (guids.Any())
             {
-                AssetDatabase.GUIDToAssetPath(guids[0]);
+                return AssetDatabase.GUIDToAssetPath(guids[0]);
             }
 
             return string.Empty;
