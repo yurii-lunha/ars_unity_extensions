@@ -279,6 +279,21 @@ namespace ars_unity_extensions.Runtime
 
         #endregion
 
+        #region Assets
+
+        public static string FindScenePath(string sceneName)
+        {
+            string[] guids = AssetDatabase.FindAssets("t:scene " + sceneName, null);
+
+            if (guids.Any())
+            {
+                AssetDatabase.GUIDToAssetPath(guids[0]);
+            }
+
+            return string.Empty;
+        }
+
+        #endregion
 
 #if UNITY_EDITOR
         public static RaycastHit2D UIToWorldRaycastHit(Vector2 mousePosition, string tag = "")
