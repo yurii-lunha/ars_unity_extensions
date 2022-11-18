@@ -36,6 +36,30 @@ namespace ars_unity_extensions.Runtime
             return enumerable.ElementAt(UnityEngine.Random.Range(0, enumerable.Length));
         }
 
+        public static T RandomOne<T>(this IEnumerable<T> collection, IEnumerable<T> except) where T : class
+        {
+            var enumerable = collection.Except(except).ToArray();
+
+            if (!(bool)enumerable?.Any())
+            {
+                return null;
+            }
+
+            return enumerable.ElementAt(UnityEngine.Random.Range(0, enumerable.Length));
+        }
+
+        public static T RandomOne<T>(this IEnumerable<T> collection, T except) where T : class
+        {
+            var enumerable = collection.Except(new[] { except }).ToArray();
+
+            if (!(bool)enumerable?.Any())
+            {
+                return null;
+            }
+
+            return enumerable.ElementAt(UnityEngine.Random.Range(0, enumerable.Length));
+        }
+
         public static T RandomOne<T>(this ICollection<T> collection) where T : struct
         {
             if (!(collection?.Any() ?? false))
