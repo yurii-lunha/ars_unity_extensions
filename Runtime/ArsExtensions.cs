@@ -303,6 +303,8 @@ namespace ars_unity_extensions.Runtime
 
         #endregion
 
+
+#if UNITY_EDITOR
         #region Assets
 
         public static string FindScenePath(string sceneName)
@@ -319,7 +321,6 @@ namespace ars_unity_extensions.Runtime
 
         #endregion
 
-#if UNITY_EDITOR
         public static RaycastHit2D UIToWorldRaycastHit(Vector2 mousePosition, string tag = "")
         {
             var worldRay = HandleUtility.GUIPointToWorldRay(mousePosition);
