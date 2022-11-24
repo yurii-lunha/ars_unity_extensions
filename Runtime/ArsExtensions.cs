@@ -8,7 +8,7 @@ using UnityEngine.EventSystems;
 using UnityEditor;
 #endif
 
-namespace ars_unity_extensions.Runtime
+namespace Ars.Extensions.Runtime
 {
     public static class ArsExtensions
     {
