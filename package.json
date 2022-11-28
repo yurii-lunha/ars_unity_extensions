@@ -1,6 +1,6 @@
 {
   "name": "com.ylunha.ars-unity-extension",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "displayName": "Ars Unity Extensions",
   "description": "Unity C# extensions and utilities",
   "unity": "2020.1",

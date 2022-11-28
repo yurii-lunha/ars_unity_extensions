@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using Random = UnityEngine.Random;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -12,6 +13,19 @@ namespace Ars.Extensions.Runtime
 {
     public static class ArsExtensions
     {
+        #region Vector
+
+        public static Vector3 RandomRange(this Vector3 range)
+        {
+            return new Vector3(
+                Random.Range(-range.x, range.x),
+                Random.Range(-range.y, range.y),
+                Random.Range(-range.z, range.z)
+            );
+        }
+
+        #endregion
+
         #region Animator
 
         public static float GetAnimationClipLenght(this Animator animator, string clipName)
@@ -305,6 +319,7 @@ namespace Ars.Extensions.Runtime
 
 
 #if UNITY_EDITOR
+
         #region Assets
 
         public static string FindScenePath(string sceneName)
