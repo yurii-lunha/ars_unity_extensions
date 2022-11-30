@@ -30,7 +30,8 @@ namespace Ars.Extensions.Runtime
 
         public static float GetAnimationClipLenght(this Animator animator, string clipName)
         {
-            var clip = animator.runtimeAnimatorController.animationClips.FirstOrDefault(i => i.name.Equals(clipName));
+            var clip = animator.runtimeAnimatorController.animationClips
+                .FirstOrDefault(i => i.name.Equals(clipName));
             return clip ? clip.length : 0f;
         }
 
