@@ -39,40 +39,33 @@ namespace Ars.Extensions.Runtime
 
         #region Random_IEnumerable_ICollection_Enum
 
-        public static T RandomOne<T>(this IEnumerable<T> collection) where T : class
+        public static T RandomOne<T>(this IEnumerable<T> enumerable) where T : class
         {
-            var enumerable = collection as T[] ?? collection.ToArray();
+            var array = enumerable as T[] ?? enumerable.ToArray();
 
-            if (!(bool)enumerable?.Any())
+            if (!(bool)array?.Any())
             {
                 return null;
             }
 
-            return enumerable.ElementAt(UnityEngine.Random.Range(0, enumerable.Length));
+            return array.ElementAt(Random.Range(0, array.Length));
         }
 
-        public static T RandomOne<T>(this IEnumerable<T> collection, IEnumerable<T> except) where T : class
+        public static T RandomOne<T>(this IEnumerable<T> enumerable, IEnumerable<T> except) where T : class
         {
-            var enumerable = collection.Except(except).ToArray();
+            var array = enumerable.Except(except).ToArray();
 
-            if (!(bool)enumerable?.Any())
+            if (!(bool)array?.Any())
             {
                 return null;
             }
 
-            return enumerable.ElementAt(UnityEngine.Random.Range(0, enumerable.Length));
+            return RandomOne(array);
         }
 
-        public static T RandomOne<T>(this IEnumerable<T> collection, T except) where T : class
+        public static T RandomOne<T>(this IEnumerable<T> enumerable, T except) where T : class
         {
-            var enumerable = collection.Except(new[] { except }).ToArray();
-
-            if (!(bool)enumerable?.Any())
-            {
-                return null;
-            }
-
-            return enumerable.ElementAt(UnityEngine.Random.Range(0, enumerable.Length));
+            return RandomOne(enumerable, new[] { except });
         }
 
         public static T RandomOne<T>(this ICollection<T> collection) where T : struct
@@ -82,7 +75,26 @@ namespace Ars.Extensions.Runtime
                 return default;
             }
 
-            return collection.ElementAt(UnityEngine.Random.Range(0, collection.Count));
+            return collection.ElementAt(Random.Range(0, collection.Count));
+        }
+
+        public static T RandomOne<T>(this ICollection<T> collection, IEnumerable<T> except) where T : struct
+        {
+            if (!(collection?.Any() ?? false))
+            {
+                return default;
+            }
+
+            var array = collection.Except(except).ToArray();
+
+            return !array.Any()
+                ? default
+                : RandomOne(collection);
+        }
+
+        public static T RandomOne<T>(this ICollection<T> collection, T except) where T : struct
+        {
+            return RandomOne(collection, new[] { except });
         }
 
         /// <summary>
@@ -98,7 +110,7 @@ namespace Ars.Extensions.Runtime
                 return default;
             }
 
-            return collection.ElementAt(UnityEngine.Random.Range(0, collection.Count()));
+            return collection.ElementAt(Random.Range(0, collection.Count()));
         }
 
         /// <summary>
@@ -117,7 +129,7 @@ namespace Ars.Extensions.Runtime
 
             foreach (var t in except) collection.Remove(t);
 
-            return !collection.Any() ? default : collection.ElementAt(UnityEngine.Random.Range(0, collection.Count()));
+            return !collection.Any() ? default : collection.ElementAt(Random.Range(0, collection.Count()));
         }
 
         #endregion
