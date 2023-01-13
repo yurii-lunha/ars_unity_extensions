@@ -89,7 +89,7 @@ namespace Ars.Extensions.Runtime
 
             return !array.Any()
                 ? default
-                : RandomOne(collection);
+                : RandomOne(array);
         }
 
         public static T RandomOne<T>(this ICollection<T> collection, T except) where T : struct
